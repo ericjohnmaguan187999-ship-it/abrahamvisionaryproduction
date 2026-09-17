@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Film Production | AVP.Ph</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #080808;
+      color: white;
+    }
+
+    /* HERO */
+
+    .film-hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.9)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: cover;
+      background-position: center;
+
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(50px, 9vw, 100px);
+      text-transform: uppercase;
+      letter-spacing: 8px;
+    }
+
+    .hero-content h1 span {
+      color: #d4af37;
+    }
+
+    .hero-content p {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #ccc;
+      letter-spacing: 3px;
+    }
+
+    /* BUTTON */
+
+    .btn {
+      display: inline-block;
+
+      margin-top: 35px;
+
+      padding: 15px 35px;
+
+      border: 2px solid #d4af37;
+
+      color: #d4af37;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: #d4af37;
+      color: black;
+
+      box-shadow: 0 0 30px rgba(212,175,55,.5);
+
+      transform: scale(1.05);
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 90px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 42px;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
+    section > p {
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.8;
+      color: #aaa;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+      max-width: 1100px;
+
+      margin: 50px auto 0;
+
+      display: grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 25px;
+    }
+
+    .project {
+      min-height: 300px;
+
+      display: flex;
+
+      align-items: end;
+
+      padding: 25px;
+
+      text-align: left;
+
+      background-size: cover;
+      background-position: center;
+
+      border: 1px solid #292929;
+
+      transition: .4s;
+    }
+
+    .project:hover {
+      transform: scale(1.03);
+
+      border-color: #d4af37;
+
+      box-shadow:
+      0 15px 40px rgba(0,0,0,.6);
+    }
+
+    .project h3 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .project p {
+      color: #ccc;
+    }
+
+    .project:nth-child(1) {
+      background-image:
+      linear-gradient(transparent, #000),
+      url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .project:nth-child(2) {
+      background-image:
+      linear-gradient(transparent, #000),
+      url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .project:nth-child(3) {
+      background-image:
+      linear-gradient(transparent, #000),
+      url("https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=800&q=80");
+    }
+
+    /* PROCESS */
+
+    .process {
+      max-width: 900px;
+
+      margin: 50px auto;
+
+      display: grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(200px, 1fr));
+
+      gap: 20px;
+    }
+
+    .process-card {
+      padding: 30px;
+
+      background: #151515;
+
+      border: 1px solid #292929;
+
+      transition: .3s;
+    }
+
+    .process-card:hover {
+      transform: translateY(-8px);
+      border-color: #d4af37;
+    }
+
+    .number {
+      font-size: 40px;
+
+      color: #d4af37;
+
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+    .process-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .process-card p {
+      color: #999;
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #111;
+    }
+
+    .contact h2 {
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px;
+
+      text-align: center;
+
+      background: #050505;
+
+      color: #777;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeIn {
+
+      from {
+        opacity: 0;
+        transform: scale(1.03);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- HERO -->
+
+  <div class="film-hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Film <span>Production</span>
+      </h1>
+
+      <p>
+        STORIES THAT DESERVE TO BE SEEN.
+      </p>
+
+      <a href="#projects" class="btn">
+        VIEW OUR WORK
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- ABOUT FILM PRODUCTION -->
+
+  <section>
+
+    <h2>Film Production</h2>
+
+    <p>
+      At Abraham Visionary Production, we transform ideas into cinematic
+      experiences. Our production process combines storytelling,
+      cinematography, creativity, and professional production techniques
+      to bring every vision to life.
+    </p>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <h2>Featured Projects</h2>
+
+    <p>
+      Every project begins with an idea and becomes a story.
+    </p>
+
+
+    <div class="projects">
+
+
+      <div class="project">
+
+        <div>
+
+          <h3>Cinematic Stories</h3>
+
+          <p>
+            Powerful visuals and meaningful storytelling.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div>
+
+          <h3>Creative Films</h3>
+
+          <p>
+            Original concepts brought to life on screen.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div>
+
+          <h3>Visual Experiences</h3>
+
+          <p>
+            Creating unforgettable moments through film.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTION PROCESS -->
+
+  <section>
+
+    <h2>Our Production Process</h2>
+
+    <div class="process">
+
+
+      <div class="process-card">
+
+        <div class="number">01</div>
+
+        <h3>Concept</h3>
+
+        <p>
+          We develop the story, concept, and creative direction.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">02</div>
+
+        <h3>Production</h3>
+
+        <p>
+          We capture the story using professional production techniques.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">03</div>
+
+        <h3>Post-Production</h3>
+
+        <p>
+          Editing, sound, color, and visual finishing bring everything
+          together.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">04</div>
+
+        <h3>Final Film</h3>
+
+        <p>
+          The finished production is ready to share with audiences.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact">
+
+    <h2>Let's Create Something</h2>
+
+    <p>
+      Have a story or project in mind?
+      Let Abraham Visionary Production bring your vision to life.
+    </p>
+
+    <a href="index.html" class="btn">
+      BACK TO HOME
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Abraham Visionary Production.
+    All Rights Reserved.
+
+  </footer>
+
+
+</body>
+</html>
