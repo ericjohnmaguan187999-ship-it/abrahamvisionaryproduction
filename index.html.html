@@ -1,133 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Before & After</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f2f2f2;
-        }
+  <meta charset="UTF-8">
 
-        header {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .search-box {
-            text-align: center;
-            margin: 25px;
-        }
+  <title>AVP.Ph</title>
 
-        #search {
-            width: 60%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #aaa;
-            border-radius: 8px;
-        }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
+  <style>
 
-        .card {
-            background: white;
-            width: 300px;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
+    /* =========================
+       GENERAL
+    ========================= */
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .card h2 {
-            text-align: center;
-        }
-    </style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+    }
+
+
+    /* =========================
+       HERO SECTION
+    ========================= */
+
+    header {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.60),
+          rgba(0, 0, 0, 0.80)
+        ),
+        url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+
+    .hero {
+      max-width: 900px;
+
+      animation: heroFade 1.5s ease;
+    }
+
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 90px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .hero h1 span {
+      color: #d4af37;
+    }
+
+
+    .hero p {
+      font-size: 20px;
+
+      color: #ccc;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 35px;
+    }
+
+
+    /* =========================
+       MAIN BUTTON
+    ========================= */
+
+    .btn {
+      display: inline-block;
+
+      padding: 15px 32px;
+
+      border: 2px solid #d4af37;
+
+      color: #d4af37;
+
+      text-decoration: none;
+
+      text-transform: uppercase;
+
+      font-weight: bold;
+
+      transition: 0.3s;
+    }
+
+
+    .btn:hover {
+      background: #d4af37;
+
+      color: #000;
+
+      transform: scale(1.05);
+
+      box-shadow:
+        0 0 25px rgba(212, 175, 55, 0.6);
+    }
+
+
+    .btn:active {
+      transform: scale(0.92);
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 80px 20px;
+
+      text-align: center;
+    }
+
+
+    section h2 {
+      font-size: 38px;
+
+      margin-bottom: 20px;
+
+      color: #d4af37;
+    }
+
+
+    section p {
+      max-width: 700px;
+
+      margin: auto;
+
+      line-height: 1.8;
+
+      color: #bbb;
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+
+      gap: 25px;
+
+      max-width: 1100px;
+
+      margin: 45px auto 0;
+    }
+
+
+    /* =========================
+       SERVICE CARD
+    ========================= */
+
+    .card {
+      padding: 0 0 30px;
+
+      overflow: hidden;
+
+      background: #151515;
+
+      border: 1px solid #292929;
+
+      transition: 0.3s;
+    }
+
+
+    .card:hover {
+      transform: translateY(-8px);
+
+      border-color: #d4af37;
+
+      box-shadow:
+        0 10px 30px rgba(212, 175, 55, 0.15);
+    }
+
+
+    /* =========================
+       SERVICE IMAGE
+    ========================= */
+
+    .card img {
+      width: 100%;
+
+      height: 200px;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition: 0.4s;
+    }
+
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+
+    /* =========================
+       SERVICE TITLE
+    ========================= */
+
+    .card h3 {
+      color: #fff;
+
+      margin: 25px 20px 12px;
+
+      font-size: 22px;
+    }
+
+
+    .card p {
+      padding: 0 20px;
+
+      color: #bbb;
+    }
+
+
+    /* =========================
+       SERVICE BUTTON
+    ========================= */
+
+    .service-btn {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      padding: 12px 20px;
+
+      border: 1px solid #d4af37;
+
+      color: #d4af37;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      transition: 0.3s;
+    }
+
+
+    .service-btn:hover {
+      background: #d4af37;
+
+      color: #000;
+
+      box-shadow:
+        0 0 20px rgba(212, 175, 55, 0.5);
+
+      transform: translateY(-3px);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 30px;
+
+      text-align: center;
+
+      background: #050505;
+
+      color: #777;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    @keyframes heroFade {
+
+      from {
+        opacity: 0;
+
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>Before & After Gallery</h1>
-        <p>Search and view our transformations</p>
-    </header>
 
-    <div class="search-box">
-        <input 
-            type="text" 
-            id="search" 
-            placeholder="Search here..."
-            onkeyup="searchItems()"
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <header>
+
+    <div class="hero">
+
+      <h1>
+        Abraham <span>Visionary</span> Production
+      </h1>
+
+      <p>
+        Creating Stories. Capturing Vision. Inspiring Audiences.
+      </p>
+
+      <a href="#about" class="btn">
+        Explore Our Vision
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       ABOUT US
+  ========================= -->
+
+  <section id="about">
+
+    <h2>
+      About Us
+    </h2>
+
+    <p>
+      Abraham Visionary Production is a creative production brand
+      dedicated to transforming ideas into powerful visual experiences.
+      From concept development to production, we bring creativity,
+      passion, and vision together to create memorable stories.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       OUR SERVICES
+  ========================= -->
+
+  <section>
+
+    <h2>
+      Our Services
+    </h2>
+
+
+    <div class="services">
+
+
+      <!-- =====================
+           FILM PRODUCTION
+      ====================== -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80"
+          alt="Film Production"
         >
+
+        <h3>
+          Film Production
+        </h3>
+
+        <p>
+          Bringing compelling stories from concept to screen.
+        </p>
+
+        <a
+          href="film-production.html"
+          class="service-btn"
+        >
+          EXPLORE FILM PRODUCTION →
+        </a>
+
+      </div>
+
+
+      <!-- =====================
+           VIDEO PRODUCTION
+      ====================== -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80"
+          alt="Video Production"
+        >
+
+        <h3>
+          Video Production
+        </h3>
+
+        <p>
+          Professional visual content for brands, events, and projects.
+        </p>
+
+        <a
+          href="#"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =====================
+           PHOTOGRAPHY
+      ====================== -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=800&q=80"
+          alt="Photography"
+        >
+
+        <h3>
+          Photography
+        </h3>
+
+        <p>
+          Creative photography that captures meaningful moments.
+        </p>
+
+        <a
+          href="#"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =====================
+           CREATIVE DIRECTION
+      ====================== -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80"
+          alt="Creative Direction"
+        >
+
+        <h3>
+          Creative Direction
+        </h3>
+
+        <p>
+          Turning ambitious ideas into distinctive visual concepts.
+        </p>
+
+        <a
+          href="#"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
     </div>
 
-    <div class="container" id="gallery">
+  </section>
 
-        <div class="card">
-            <img src="before1.jpg">
-            <h2>Room Makeover</h2>
-            <p>Before and after room transformation.</p>
-        </div>
 
-        <div class="card">
-            <img src="before2.jpg">
-            <h2>Garden</h2>
-            <p>Before and after garden improvement.</p>
-        </div>
+  <!-- =========================
+       OUR VISION
+  ========================= -->
 
-        <div class="card">
-            <img src="before3.jpg">
-            <h2>Computer Setup</h2>
-            <p>Before and after gaming setup.</p>
-        </div>
+  <section>
 
-        <div class="card">
-            <img src="before4.jpg">
-            <h2>Motorcycle</h2>
-            <p>Before and after motorcycle modification.</p>
-        </div>
+    <h2>
+      Our Vision
+    </h2>
 
-    </div>
+    <p>
+      To create meaningful productions that inspire people,
+      communicate powerful ideas, and leave a lasting impression.
+    </p>
 
-    <script>
-        function searchItems() {
+  </section>
 
-            let input = document
-                .getElementById("search")
-                .value
-                .toLowerCase();
 
-            let cards = document.querySelectorAll(".card");
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-            cards.forEach(function(card) {
+  <footer>
 
-                let text = card.innerText.toLowerCase();
+    © 2026 Abraham Visionary Production.
+    All Rights Reserved.
 
-                if (text.includes(input)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+  </footer>
 
-            });
-        }
-    </script>
 
 </body>
+
 </html>
