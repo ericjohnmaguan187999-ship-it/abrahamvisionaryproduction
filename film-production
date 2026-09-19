@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Film Production | AVP.Ph</title>
+  <title>AVP.Ph | Abraham Visionary Production</title>
 
   <style>
+
+    /* =========================
+       GENERAL
+    ========================= */
 
     * {
       margin: 0;
@@ -19,14 +25,75 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #080808;
-      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    /* HERO */
 
-    .film-hero {
+    /* =========================
+       LOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+
+      background: #050505;
+
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: loaderOut 1s ease 2s forwards;
+    }
+
+    .loader-text {
+      font-size: 38px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      color: #fff;
+
+      animation: loaderPulse 1s infinite;
+    }
+
+    .loader-text span {
+      color: #d4af37;
+    }
+
+    @keyframes loaderPulse {
+
+      0%, 100% {
+        opacity: .4;
+        transform: scale(.95);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes loaderOut {
+
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    header {
+
       min-height: 100vh;
 
       display: flex;
@@ -37,45 +104,195 @@
 
       padding: 30px;
 
-      background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.9)),
-        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80");
+      position: relative;
 
-      background-size: cover;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.60),
+          rgba(0,0,0,.88)
+        ),
+        url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: 100%;
+
       background-position: center;
 
-      animation: fadeIn 1.5s ease;
+      background-repeat: no-repeat;
+
+      animation:
+        heroZoom 12s ease-in-out infinite alternate,
+        heroFade 1.5s ease;
     }
 
-    .hero-content {
-      max-width: 900px;
+
+    @keyframes heroZoom {
+
+      from {
+        background-size: 100%;
+      }
+
+      to {
+        background-size: 112%;
+      }
+
     }
 
-    .hero-content h1 {
-      font-size: clamp(50px, 9vw, 100px);
+
+    /* =========================
+       MOVING GOLD LIGHT
+    ========================= */
+
+    header::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 450px;
+      height: 450px;
+
+      background: rgba(212,175,55,.14);
+
+      border-radius: 50%;
+
+      filter: blur(110px);
+
+      animation:
+        lightMove 7s ease-in-out infinite alternate;
+    }
+
+
+    @keyframes lightMove {
+
+      from {
+        transform: translate(-350px,-120px);
+      }
+
+      to {
+        transform: translate(350px,150px);
+      }
+
+    }
+
+
+    /* =========================
+       HERO CONTENT
+    ========================= */
+
+    .hero {
+
+      max-width: 950px;
+
+      position: relative;
+
+      z-index: 2;
+
+      animation:
+        heroEnter 1.5s ease;
+    }
+
+
+    @keyframes heroEnter {
+
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    .hero h1 {
+
+      font-size:
+        clamp(42px,8vw,90px);
+
       text-transform: uppercase;
-      letter-spacing: 8px;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 20px;
+
+      animation:
+        titleReveal 1.5s ease .3s both;
     }
 
-    .hero-content h1 span {
+
+    @keyframes titleReveal {
+
+      from {
+        opacity: 0;
+        letter-spacing: 28px;
+        transform: scale(.8);
+      }
+
+      to {
+        opacity: 1;
+        letter-spacing: 5px;
+        transform: scale(1);
+      }
+
+    }
+
+
+    .hero h1 span {
+
       color: #d4af37;
+
+      animation:
+        goldGlow 2s ease-in-out infinite alternate;
     }
 
-    .hero-content p {
-      margin-top: 20px;
+
+    @keyframes goldGlow {
+
+      from {
+        text-shadow:
+          0 0 5px rgba(212,175,55,.2);
+      }
+
+      to {
+        text-shadow:
+          0 0 12px rgba(212,175,55,.7),
+          0 0 35px rgba(212,175,55,.3);
+      }
+
+    }
+
+
+    .hero p {
+
       font-size: 20px;
+
       color: #ccc;
-      letter-spacing: 3px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 35px;
+
+      line-height: 1.7;
+
+      animation:
+        fadeUp 1s ease .8s both;
     }
 
-    /* BUTTON */
+
+    /* =========================
+       MAIN BUTTON
+    ========================= */
 
     .btn {
+
       display: inline-block;
 
-      margin-top: 35px;
-
-      padding: 15px 35px;
+      padding: 15px 32px;
 
       border: 2px solid #d4af37;
 
@@ -83,176 +300,485 @@
 
       text-decoration: none;
 
+      text-transform: uppercase;
+
       font-weight: bold;
 
-      transition: .3s;
+      letter-spacing: 1px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition: .4s;
+
+      animation:
+        fadeUp 1s ease 1s both;
+
+      z-index: 1;
     }
+
+
+    .btn::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 100%;
+      height: 100%;
+
+      background: #d4af37;
+
+      transition: .4s;
+
+      z-index: -1;
+    }
+
+
+    .btn:hover::before {
+      left: 0;
+    }
+
 
     .btn:hover {
-      background: #d4af37;
-      color: black;
 
-      box-shadow: 0 0 30px rgba(212,175,55,.5);
+      color: #000;
 
-      transform: scale(1.05);
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 0 30px rgba(212,175,55,.5);
     }
 
-    /* SECTION */
+
+    .btn:active {
+      transform: scale(.95);
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
 
     section {
+
       padding: 90px 20px;
+
       text-align: center;
     }
 
+
     section h2 {
-      font-size: 42px;
-      color: #d4af37;
+
+      font-size: 40px;
+
       margin-bottom: 20px;
+
+      color: #d4af37;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
     }
+
 
     section > p {
-      max-width: 750px;
+
+      max-width: 700px;
+
       margin: auto;
+
       line-height: 1.8;
-      color: #aaa;
+
+      color: #bbb;
+
+      font-size: 17px;
     }
 
-    /* PROJECTS */
 
-    .projects {
-      max-width: 1100px;
+    /* =========================
+       ABOUT
+    ========================= */
 
-      margin: 50px auto 0;
+    #about h2 {
 
-      display: grid;
-
-      grid-template-columns:
-      repeat(auto-fit, minmax(280px, 1fr));
-
-      gap: 25px;
+      animation:
+        fadeUp 1s ease both;
     }
 
-    .project {
-      min-height: 300px;
+
+    #about p {
+
+      animation:
+        fadeUp 1s ease .3s both;
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    #services {
+
+      padding-top: 100px;
+
+      padding-bottom: 110px;
+    }
+
+
+    #services > h2 {
+
+      animation:
+        fadeUp 1s ease both;
+    }
+
+
+    #services > p {
+
+      margin-bottom: 55px;
+
+      animation:
+        fadeUp 1s ease .2s both;
+    }
+
+
+    /* =========================
+       SERVICE CONTAINER
+    ========================= */
+
+    .services {
+
+      width: 100%;
+
+      max-width: 1200px;
+
+      margin: 0 auto;
 
       display: flex;
 
-      align-items: end;
+      flex-wrap: wrap;
 
-      padding: 25px;
+      justify-content: center;
 
-      text-align: left;
+      align-items: stretch;
 
-      background-size: cover;
-      background-position: center;
-
-      border: 1px solid #292929;
-
-      transition: .4s;
+      gap: 28px;
     }
 
-    .project:hover {
-      transform: scale(1.03);
 
-      border-color: #d4af37;
+    /* =========================
+       SERVICE CARD
+    ========================= */
 
-      box-shadow:
-      0 15px 40px rgba(0,0,0,.6);
-    }
+    .card {
 
-    .project h3 {
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
+      width: 270px;
 
-    .project p {
-      color: #ccc;
-    }
+      min-height: 500px;
 
-    .project:nth-child(1) {
-      background-image:
-      linear-gradient(transparent, #000),
-      url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80");
-    }
+      display: flex;
 
-    .project:nth-child(2) {
-      background-image:
-      linear-gradient(transparent, #000),
-      url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80");
-    }
-
-    .project:nth-child(3) {
-      background-image:
-      linear-gradient(transparent, #000),
-      url("https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=800&q=80");
-    }
-
-    /* PROCESS */
-
-    .process {
-      max-width: 900px;
-
-      margin: 50px auto;
-
-      display: grid;
-
-      grid-template-columns:
-      repeat(auto-fit, minmax(200px, 1fr));
-
-      gap: 20px;
-    }
-
-    .process-card {
-      padding: 30px;
+      flex-direction: column;
 
       background: #151515;
 
       border: 1px solid #292929;
 
+      overflow: hidden;
+
+      opacity: 0;
+
+      transform: translateY(60px);
+
+      animation:
+        cardReveal .9s ease forwards;
+
+      transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+    }
+
+
+    /* =========================
+       CARD ANIMATION DELAY
+    ========================= */
+
+    .card:nth-child(1) {
+      animation-delay: .2s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: .35s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: .5s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: .65s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: .8s;
+    }
+
+    .card:nth-child(6) {
+      animation-delay: .95s;
+    }
+
+    .card:nth-child(7) {
+      animation-delay: 1.1s;
+    }
+
+
+    @keyframes cardReveal {
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       CARD HOVER
+    ========================= */
+
+    .card:hover {
+
+      transform:
+        translateY(-12px)
+        scale(1.02);
+
+      border-color: #d4af37;
+
+      box-shadow:
+        0 15px 40px rgba(212,175,55,.18);
+    }
+
+
+    /* =========================
+       CARD IMAGE
+    ========================= */
+
+    .card img {
+
+      width: 100%;
+
+      height: 205px;
+
+      object-fit: cover;
+
+      display: block;
+
+      flex-shrink: 0;
+
+      transition:
+        transform .6s ease;
+    }
+
+
+    .card:hover img {
+
+      transform:
+        scale(1.10);
+    }
+
+
+    /* =========================
+       CARD TITLE
+    ========================= */
+
+    .card h3 {
+
+      color: #fff;
+
+      margin: 25px 20px 12px;
+
+      font-size: 21px;
+
+      line-height: 1.3;
+
+      min-height: 27px;
+
       transition: .3s;
     }
 
-    .process-card:hover {
-      transform: translateY(-8px);
-      border-color: #d4af37;
+
+    .card:hover h3 {
+
+      color: #d4af37;
     }
 
-    .number {
-      font-size: 40px;
+
+    /* =========================
+       CARD DESCRIPTION
+    ========================= */
+
+    .card p {
+
+      padding: 0 20px;
+
+      color: #bbb;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+
+      min-height: 70px;
+
+      flex-grow: 1;
+    }
+
+
+    /* =========================
+       SERVICE BUTTON
+    ========================= */
+
+    .service-btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      align-self: center;
+
+      width: 185px;
+
+      min-height: 42px;
+
+      margin-top: 20px;
+
+      margin-bottom: 30px;
+
+      padding: 10px 12px;
+
+      border: 1px solid #d4af37;
 
       color: #d4af37;
 
+      text-decoration: none;
+
+      font-size: 11px;
+
       font-weight: bold;
 
-      margin-bottom: 15px;
+      letter-spacing: 1px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition: .4s;
+
+      z-index: 1;
     }
 
-    .process-card h3 {
-      margin-bottom: 10px;
+
+    .service-btn::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 100%;
+      height: 100%;
+
+      background: #d4af37;
+
+      transition: .4s;
+
+      z-index: -1;
     }
 
-    .process-card p {
-      color: #999;
-      line-height: 1.6;
+
+    .service-btn:hover::before {
+      left: 0;
     }
 
-    /* CONTACT */
 
-    .contact {
-      background: #111;
+    .service-btn:hover {
+
+      color: #000;
+
+      box-shadow:
+        0 0 20px rgba(212,175,55,.5);
+
+      transform:
+        translateY(-3px);
     }
 
-    .contact h2 {
-      margin-bottom: 15px;
+
+    /* =========================
+       VISION
+    ========================= */
+
+    .vision {
+
+      background:
+
+        linear-gradient(
+          rgba(0,0,0,.65),
+          rgba(0,0,0,.9)
+        ),
+
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-attachment: fixed;
     }
 
-    .contact p {
-      margin-bottom: 25px;
+
+    .vision h2 {
+
+      animation:
+        floating 3s ease-in-out infinite;
     }
 
-    /* FOOTER */
+
+    .vision p {
+
+      animation:
+        fadeUp 1s ease .3s both;
+    }
+
+
+    @keyframes floating {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
+
       padding: 30px;
 
       text-align: center;
@@ -260,124 +786,457 @@
       background: #050505;
 
       color: #777;
+
+      font-size: 14px;
     }
 
-    /* ANIMATION */
 
-    @keyframes fadeIn {
+    /* =========================
+       GENERAL ANIMATIONS
+    ========================= */
+
+    @keyframes heroFade {
 
       from {
+
         opacity: 0;
+
         transform: scale(1.03);
       }
 
       to {
+
         opacity: 1;
+
         transform: scale(1);
       }
 
     }
 
+
+    @keyframes fadeUp {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1200px) {
+
+      .services {
+
+        max-width: 900px;
+
+        gap: 25px;
+      }
+
+      .card {
+
+        width: 280px;
+      }
+
+    }
+
+
+    /* =========================
+       SMALL TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .services {
+
+        max-width: 620px;
+      }
+
+      .card {
+
+        width: 290px;
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 620px) {
+
+      .hero h1 {
+
+        letter-spacing: 3px;
+      }
+
+
+      .hero p {
+
+        font-size: 16px;
+      }
+
+
+      section {
+
+        padding: 70px 15px;
+      }
+
+
+      section h2 {
+
+        font-size: 32px;
+      }
+
+
+      #services > p {
+
+        font-size: 15px;
+
+        padding: 0 10px;
+
+        margin-bottom: 40px;
+      }
+
+
+      .services {
+
+        width: 100%;
+
+        max-width: 350px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 22px;
+      }
+
+
+      .card {
+
+        width: 100%;
+
+        min-height: 490px;
+      }
+
+
+      .card img {
+
+        height: 220px;
+      }
+
+
+      .vision {
+
+        background-attachment: scroll;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       LOADER
+  ========================= -->
 
-  <div class="film-hero">
+  <div class="loader">
 
-    <div class="hero-content">
+    <div class="loader-text">
 
-      <h1>
-        Film <span>Production</span>
-      </h1>
-
-      <p>
-        STORIES THAT DESERVE TO BE SEEN.
-      </p>
-
-      <a href="#projects" class="btn">
-        VIEW OUR WORK
-      </a>
+      AVP<span>.</span>
 
     </div>
 
   </div>
 
 
-  <!-- ABOUT FILM PRODUCTION -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
-  <section>
+  <header>
 
-    <h2>Film Production</h2>
+    <div class="hero">
+
+      <h1>
+        Abraham <span>Visionary</span> Production
+      </h1>
+
+      <p>
+        Creating Stories. Capturing Vision. Inspiring Audiences.
+      </p>
+
+      <a href="#about" class="btn">
+        Explore Our Vision
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       ABOUT
+  ========================= -->
+
+  <section id="about">
+
+    <h2>
+      About Us
+    </h2>
 
     <p>
-      At Abraham Visionary Production, we transform ideas into cinematic
-      experiences. Our production process combines storytelling,
-      cinematography, creativity, and professional production techniques
-      to bring every vision to life.
+      Abraham Visionary Production is a creative production brand
+      dedicated to transforming ideas into powerful visual experiences.
+      From concept development to production, we bring creativity,
+      passion, and vision together to create memorable stories.
     </p>
 
   </section>
 
 
-  <!-- PROJECTS -->
+  <!-- =========================
+       SERVICES
+  ========================= -->
 
-  <section id="projects">
+  <section id="services">
 
-    <h2>Featured Projects</h2>
+    <h2>
+      Our Services
+    </h2>
 
     <p>
-      Every project begins with an idea and becomes a story.
+      From visual storytelling to digital experiences,
+      we bring ideas to life through creativity and technology.
     </p>
 
 
-    <div class="projects">
+    <div class="services">
 
 
-      <div class="project">
+      <!-- =========================
+           1. FILM PRODUCTION
+      ========================= -->
 
-        <div>
+      <div class="card">
 
-          <h3>Cinematic Stories</h3>
+        <img
+          src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80"
+          alt="Film Production"
+        >
 
-          <p>
-            Powerful visuals and meaningful storytelling.
-          </p>
+        <h3>
+          Film Production
+        </h3>
 
-        </div>
+        <p>
+          Bringing compelling stories from concept to screen.
+        </p>
+
+        <a
+          href="film-production.html"
+          class="service-btn"
+        >
+          EXPLORE FILM →
+        </a>
 
       </div>
 
 
-      <div class="project">
+      <!-- =========================
+           2. VIDEO PRODUCTION
+      ========================= -->
 
-        <div>
+      <div class="card">
 
-          <h3>Creative Films</h3>
+        <img
+          src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80"
+          alt="Video Production"
+        >
 
-          <p>
-            Original concepts brought to life on screen.
-          </p>
+        <h3>
+          Video Production
+        </h3>
 
-        </div>
+        <p>
+          Professional visual content for brands, events, and projects.
+        </p>
+
+        <a
+          href="video-production.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
 
       </div>
 
 
-      <div class="project">
+      <!-- =========================
+           3. PHOTOGRAPHY
+      ========================= -->
 
-        <div>
+      <div class="card">
 
-          <h3>Visual Experiences</h3>
+        <img
+          src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=800&q=80"
+          alt="Photography"
+        >
 
-          <p>
-            Creating unforgettable moments through film.
-          </p>
+        <h3>
+          Photography
+        </h3>
 
-        </div>
+        <p>
+          Creative photography that captures meaningful moments.
+        </p>
+
+        <a
+          href="photography.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           4. CREATIVE DIRECTION
+      ========================= -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80"
+          alt="Creative Direction"
+        >
+
+        <h3>
+          Creative Direction
+        </h3>
+
+        <p>
+          Turning ambitious ideas into distinctive visual concepts.
+        </p>
+
+        <a
+          href="creative-direction.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           5. WEBSITE AND DESIGN
+      ========================= -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80"
+          alt="Website and Design"
+        >
+
+        <h3>
+          Website & Design
+        </h3>
+
+        <p>
+          Modern websites and creative designs built to make
+          your brand stand out online.
+        </p>
+
+        <a
+          href="website-design.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           6. PODCAST
+      ========================= -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80"
+          alt="Podcast"
+        >
+
+        <h3>
+          Podcast
+        </h3>
+
+        <p>
+          Engaging podcast experiences through quality audio,
+          visuals, and meaningful conversations.
+        </p>
+
+        <a
+          href="podcast.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           7. CONTENT CREATION
+      ========================= -->
+
+      <div class="card">
+
+        <img
+          src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=800&q=80"
+          alt="Content Creation"
+        >
+
+        <h3>
+          Content Creation
+        </h3>
+
+        <p>
+          Creative and engaging content designed to connect
+          brands with their audience.
+        </p>
+
+        <a
+          href="content-creation.html"
+          class="service-btn"
+        >
+          VIEW SERVICE →
+        </a>
 
       </div>
 
@@ -387,92 +1246,27 @@
   </section>
 
 
-  <!-- PRODUCTION PROCESS -->
+  <!-- =========================
+       VISION
+  ========================= -->
 
-  <section>
+  <section class="vision">
 
-    <h2>Our Production Process</h2>
-
-    <div class="process">
-
-
-      <div class="process-card">
-
-        <div class="number">01</div>
-
-        <h3>Concept</h3>
-
-        <p>
-          We develop the story, concept, and creative direction.
-        </p>
-
-      </div>
-
-
-      <div class="process-card">
-
-        <div class="number">02</div>
-
-        <h3>Production</h3>
-
-        <p>
-          We capture the story using professional production techniques.
-        </p>
-
-      </div>
-
-
-      <div class="process-card">
-
-        <div class="number">03</div>
-
-        <h3>Post-Production</h3>
-
-        <p>
-          Editing, sound, color, and visual finishing bring everything
-          together.
-        </p>
-
-      </div>
-
-
-      <div class="process-card">
-
-        <div class="number">04</div>
-
-        <h3>Final Film</h3>
-
-        <p>
-          The finished production is ready to share with audiences.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="contact">
-
-    <h2>Let's Create Something</h2>
+    <h2>
+      Our Vision
+    </h2>
 
     <p>
-      Have a story or project in mind?
-      Let Abraham Visionary Production bring your vision to life.
+      To create meaningful productions that inspire people,
+      communicate powerful ideas, and leave a lasting impression.
     </p>
-
-    <a href="index.html" class="btn">
-      BACK TO HOME
-    </a>
 
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
@@ -483,4 +1277,5 @@
 
 
 </body>
+
 </html>
