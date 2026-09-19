@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Website & Design | AVP.Ph</title>
+
+  <style>
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: loaderOut 1s ease 2s forwards;
+    }
+
+    .loader-text {
+      font-size: 38px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      color: #fff;
+
+      animation: loaderPulse 1s infinite;
+    }
+
+    .loader-text span {
+      color: #d4af37;
+    }
+
+    @keyframes loaderPulse {
+
+      0%, 100% {
+        opacity: .4;
+        transform: scale(.95);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes loaderOut {
+
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    header {
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.58),
+          rgba(0,0,0,.90)
+        ),
+        url("https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      animation:
+        heroZoom 12s ease-in-out infinite alternate,
+        heroFade 1.5s ease;
+    }
+
+    @keyframes heroZoom {
+
+      from {
+        background-size: 100%;
+      }
+
+      to {
+        background-size: 112%;
+      }
+
+    }
+
+
+    /* =========================
+       MOVING GOLD LIGHT
+    ========================= */
+
+    header::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 450px;
+      height: 450px;
+
+      background: rgba(212,175,55,.14);
+
+      border-radius: 50%;
+
+      filter: blur(110px);
+
+      animation:
+        lightMove 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes lightMove {
+
+      from {
+        transform: translate(-350px,-120px);
+      }
+
+      to {
+        transform: translate(350px,150px);
+      }
+
+    }
+
+
+    /* =========================
+       HERO CONTENT
+    ========================= */
+
+    .hero {
+
+      max-width: 950px;
+
+      position: relative;
+      z-index: 2;
+
+      animation:
+        heroEnter 1.5s ease;
+    }
+
+    @keyframes heroEnter {
+
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    .hero h1 {
+
+      font-size:
+        clamp(42px,8vw,88px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 20px;
+
+      animation:
+        titleReveal 1.5s ease .3s both;
+    }
+
+    @keyframes titleReveal {
+
+      from {
+        opacity: 0;
+        letter-spacing: 28px;
+        transform: scale(.8);
+      }
+
+      to {
+        opacity: 1;
+        letter-spacing: 5px;
+        transform: scale(1);
+      }
+
+    }
+
+
+    .hero h1 span {
+
+      color: #d4af37;
+
+      animation:
+        goldGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes goldGlow {
+
+      from {
+        text-shadow:
+          0 0 5px rgba(212,175,55,.2);
+      }
+
+      to {
+        text-shadow:
+          0 0 12px rgba(212,175,55,.7),
+          0 0 35px rgba(212,175,55,.3);
+      }
+
+    }
+
+
+    .hero p {
+
+      font-size: 20px;
+
+      color: #ccc;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 35px;
+
+      line-height: 1.7;
+
+      animation:
+        fadeUp 1s ease .8s both;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .btn {
+
+      display: inline-block;
+
+      padding: 15px 32px;
+
+      border: 2px solid #d4af37;
+
+      color: #d4af37;
+
+      text-decoration: none;
+
+      text-transform: uppercase;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition: .4s;
+
+      animation:
+        fadeUp 1s ease 1s both;
+
+      z-index: 1;
+    }
+
+    .btn::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 100%;
+      height: 100%;
+
+      background: #d4af37;
+
+      transition: .4s;
+
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    .btn:hover {
+
+      color: #000;
+
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 0 30px rgba(212,175,55,.5);
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+
+      padding: 90px 20px;
+
+      text-align: center;
+    }
+
+    section h2 {
+
+      font-size: 40px;
+
+      margin-bottom: 20px;
+
+      color: #d4af37;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+    }
+
+    section > p {
+
+      max-width: 750px;
+
+      margin: auto;
+
+      line-height: 1.8;
+
+      color: #bbb;
+
+      font-size: 17px;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+
+      max-width: 850px;
+
+      margin: auto;
+    }
+
+    .intro h2 {
+
+      animation:
+        fadeUp 1s ease both;
+    }
+
+    .intro p {
+
+      animation:
+        fadeUp 1s ease .3s both;
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .design-services {
+
+      max-width: 1100px;
+
+      margin: 55px auto 0;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+
+    /* =========================
+       SERVICE CARD
+    ========================= */
+
+    .design-card {
+
+      background: #151515;
+
+      border: 1px solid #292929;
+
+      padding: 35px 25px;
+
+      min-height: 280px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      transform: translateY(60px);
+
+      animation:
+        cardReveal .9s ease forwards;
+
+      transition:
+        .4s;
+    }
+
+    .design-card:nth-child(1) {
+      animation-delay: .2s;
+    }
+
+    .design-card:nth-child(2) {
+      animation-delay: .4s;
+    }
+
+    .design-card:nth-child(3) {
+      animation-delay: .6s;
+    }
+
+    .design-card:nth-child(4) {
+      animation-delay: .8s;
+    }
+
+    .design-card:nth-child(5) {
+      animation-delay: 1s;
+    }
+
+    .design-card:nth-child(6) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes cardReveal {
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       CARD GOLD EFFECT
+    ========================= */
+
+    .design-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+
+      background: rgba(212,175,55,.10);
+
+      filter: blur(35px);
+
+      top: -50px;
+      right: -50px;
+
+      transition: .5s;
+    }
+
+    .design-card:hover::before {
+
+      width: 200px;
+      height: 200px;
+
+      background: rgba(212,175,55,.18);
+    }
+
+
+    .design-card:hover {
+
+      transform:
+        translateY(-12px)
+        scale(1.02);
+
+      border-color: #d4af37;
+
+      box-shadow:
+        0 15px 40px rgba(212,175,55,.15);
+    }
+
+
+    /* =========================
+       ICON
+    ========================= */
+
+    .icon {
+
+      width: 65px;
+      height: 65px;
+
+      margin: 0 auto 25px;
+
+      border: 1px solid #d4af37;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      color: #d4af37;
+
+      font-size: 28px;
+
+      transition: .4s;
+    }
+
+    .design-card:hover .icon {
+
+      background: #d4af37;
+
+      color: #000;
+
+      transform:
+        rotate(5deg)
+        scale(1.1);
+
+      box-shadow:
+        0 0 25px rgba(212,175,55,.35);
+    }
+
+
+    /* =========================
+       CARD TEXT
+    ========================= */
+
+    .design-card h3 {
+
+      font-size: 21px;
+
+      margin-bottom: 15px;
+
+      color: #fff;
+
+      transition: .3s;
+    }
+
+    .design-card:hover h3 {
+
+      color: #d4af37;
+    }
+
+    .design-card p {
+
+      color: #aaa;
+
+      line-height: 1.7;
+
+      font-size: 15px;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+
+      background: #101010;
+    }
+
+    .process-grid {
+
+      max-width: 1100px;
+
+      margin: 55px auto 0;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 20px;
+    }
+
+    .process-card {
+
+      padding: 30px 20px;
+
+      border-top: 1px solid #333;
+
+      transition: .4s;
+    }
+
+    .process-card:hover {
+
+      border-color: #d4af37;
+
+      transform:
+        translateY(-8px);
+    }
+
+    .number {
+
+      font-size: 45px;
+
+      font-weight: bold;
+
+      color: #d4af37;
+
+      margin-bottom: 15px;
+
+      opacity: .8;
+
+      transition: .4s;
+    }
+
+    .process-card:hover .number {
+
+      opacity: 1;
+
+      text-shadow:
+        0 0 15px rgba(212,175,55,.6);
+    }
+
+    .process-card h3 {
+
+      font-size: 18px;
+
+      margin-bottom: 10px;
+    }
+
+    .process-card p {
+
+      color: #999;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+
+      min-height: 450px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+
+        linear-gradient(
+          rgba(0,0,0,.72),
+          rgba(0,0,0,.92)
+        ),
+
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-attachment: fixed;
+    }
+
+    .cta h2 {
+
+      font-size:
+        clamp(35px,6vw,65px);
+
+      animation:
+        floating 3s ease-in-out infinite;
+    }
+
+    .cta p {
+
+      margin-bottom: 30px;
+
+      animation:
+        fadeUp 1s ease .3s both;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      padding: 30px;
+
+      text-align: center;
+
+      background: #050505;
+
+      color: #777;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes heroFade {
+
+      from {
+        opacity: 0;
+        transform: scale(1.03);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    @keyframes floating {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .design-services {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .process-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .hero h1 {
+
+        letter-spacing: 3px;
+      }
+
+      .hero p {
+
+        font-size: 16px;
+      }
+
+      section {
+
+        padding: 70px 15px;
+      }
+
+      section h2 {
+
+        font-size: 32px;
+      }
+
+      .design-services {
+
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+      }
+
+      .process-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+
+        background-attachment: scroll;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       LOADER
+  ========================= -->
+
+  <div class="loader">
+
+    <div class="loader-text">
+
+      AVP<span>.</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <header>
+
+    <div class="hero">
+
+      <h1>
+        Website <span>&</span> Design
+      </h1>
+
+      <p>
+        Designing Digital Experiences That Make Brands Stand Out.
+      </p>
+
+      <a href="#about" class="btn">
+        Explore Our Service
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       INTRO
+  ========================= -->
+
+  <section id="about">
+
+    <div class="intro">
+
+      <h2>
+        Website & Design
+      </h2>
+
+      <p>
+        We create modern, creative, and user-friendly digital
+        experiences designed to represent your brand online.
+        From websites to visual designs, we turn ideas into
+        clean and engaging digital experiences.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SERVICES
+  ========================= -->
+
+  <section>
+
+    <h2>
+      What We Create
+    </h2>
+
+    <p>
+      Creative digital solutions designed to give your brand
+      a strong and memorable online presence.
+    </p>
+
+
+    <div class="design-services">
+
+
+      <!-- WEBSITE DESIGN -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ◇
+        </div>
+
+        <h3>
+          Website Design
+        </h3>
+
+        <p>
+          Clean, modern, and responsive websites designed
+          to showcase your brand, services, and ideas.
+        </p>
+
+      </div>
+
+
+      <!-- UI DESIGN -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ◈
+        </div>
+
+        <h3>
+          UI Design
+        </h3>
+
+        <p>
+          Visually engaging interfaces created to make
+          digital experiences simple, clear, and enjoyable.
+        </p>
+
+      </div>
+
+
+      <!-- BRAND DESIGN -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ✦
+        </div>
+
+        <h3>
+          Brand Design
+        </h3>
+
+        <p>
+          Visual identities that help businesses communicate
+          their personality and stand out from the competition.
+        </p>
+
+      </div>
+
+
+      <!-- GRAPHIC DESIGN -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ◆
+        </div>
+
+        <h3>
+          Graphic Design
+        </h3>
+
+        <p>
+          Creative graphics for social media, advertisements,
+          presentations, campaigns, and promotional materials.
+        </p>
+
+      </div>
+
+
+      <!-- SOCIAL MEDIA DESIGN -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ✧
+        </div>
+
+        <h3>
+          Social Media Design
+        </h3>
+
+        <p>
+          Eye-catching visual content created to help brands
+          connect with audiences across social platforms.
+        </p>
+
+      </div>
+
+
+      <!-- LANDING PAGE -->
+
+      <div class="design-card">
+
+        <div class="icon">
+          ▣
+        </div>
+
+        <h3>
+          Landing Pages
+        </h3>
+
+        <p>
+          Focused and engaging landing pages designed to
+          present offers, products, campaigns, or services.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROCESS
+  ========================= -->
+
+  <section class="process">
+
+    <h2>
+      Our Process
+    </h2>
+
+    <p>
+      From the first idea to the final design,
+      we build every project with purpose and creativity.
+    </p>
+
+
+    <div class="process-grid">
+
+
+      <div class="process-card">
+
+        <div class="number">
+          01
+        </div>
+
+        <h3>
+          Discover
+        </h3>
+
+        <p>
+          We understand your goals, audience,
+          brand, and project requirements.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">
+          02
+        </div>
+
+        <h3>
+          Plan
+        </h3>
+
+        <p>
+          We organize the structure, visual direction,
+          content, and overall user experience.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">
+          03
+        </div>
+
+        <h3>
+          Create
+        </h3>
+
+        <p>
+          We transform the concept into a polished
+          and engaging digital design.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="number">
+          04
+        </div>
+
+        <h3>
+          Deliver
+        </h3>
+
+        <p>
+          We refine the final product and prepare
+          it for your audience and platform.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================= -->
+
+  <section class="cta">
+
+    <h2>
+      Let's Build Your Digital Vision
+    </h2>
+
+    <p>
+      Your ideas deserve a digital experience that stands out.
+    </p>
+
+    <a href="index.html" class="btn">
+      Back To Home
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    © 2026 Abraham Visionary Production.
+    All Rights Reserved.
+
+  </footer>
+
+
+</body>
+
+</html>

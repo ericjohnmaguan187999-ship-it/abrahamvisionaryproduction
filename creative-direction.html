@@ -1,0 +1,1287 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Creative Direction | AVP.Ph</title>
+
+  <style>
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+
+      background: #050505;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 9999;
+
+      animation: loaderOut 1s ease 2s forwards;
+    }
+
+    .loader h1 {
+      font-size: 45px;
+      letter-spacing: 8px;
+      color: #fff;
+
+      animation: loaderPulse 1s ease-in-out infinite;
+    }
+
+    .loader h1 span {
+      color: #d4af37;
+    }
+
+    @keyframes loaderPulse {
+
+      0%, 100% {
+        opacity: .4;
+        transform: scale(.95);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes loaderOut {
+
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.60),
+          rgba(0,0,0,.88)
+        ),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=80");
+
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      animation:
+        heroZoom 12s ease-in-out infinite alternate,
+        heroFade 1.5s ease;
+    }
+
+    @keyframes heroZoom {
+
+      from {
+        background-size: 100%;
+      }
+
+      to {
+        background-size: 112%;
+      }
+
+    }
+
+
+    /* =========================
+       MOVING GOLD LIGHT
+    ========================= */
+
+    .hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      background: rgba(212,175,55,.14);
+
+      border-radius: 50%;
+
+      filter: blur(120px);
+
+      animation:
+        lightMove 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes lightMove {
+
+      from {
+        transform: translate(-400px,-150px);
+      }
+
+      to {
+        transform: translate(400px,180px);
+      }
+
+    }
+
+
+    /* =========================
+       HERO CONTENT
+    ========================= */
+
+    .hero-content {
+
+      max-width: 950px;
+
+      padding: 30px;
+
+      position: relative;
+
+      z-index: 2;
+
+      animation:
+        heroEnter 1.5s ease;
+    }
+
+    @keyframes heroEnter {
+
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .hero-content h1 {
+
+      font-size:
+        clamp(45px,8vw,95px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 5px;
+
+      line-height: 1;
+
+      margin-bottom: 25px;
+
+      animation:
+        titleReveal 1.5s ease .3s both;
+    }
+
+    @keyframes titleReveal {
+
+      from {
+
+        opacity: 0;
+
+        letter-spacing: 28px;
+
+        transform: scale(.8);
+      }
+
+      to {
+
+        opacity: 1;
+
+        letter-spacing: 5px;
+
+        transform: scale(1);
+      }
+
+    }
+
+    .hero-content h1 span {
+
+      color: #d4af37;
+
+      animation:
+        goldGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes goldGlow {
+
+      from {
+
+        text-shadow:
+          0 0 5px rgba(212,175,55,.2);
+      }
+
+      to {
+
+        text-shadow:
+          0 0 12px rgba(212,175,55,.7),
+          0 0 35px rgba(212,175,55,.3);
+      }
+
+    }
+
+    .hero-content p {
+
+      font-size: 19px;
+
+      color: #ccc;
+
+      letter-spacing: 2px;
+
+      line-height: 1.7;
+
+      max-width: 750px;
+
+      margin: auto;
+
+      animation:
+        fadeUp 1s ease .8s both;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .btn {
+
+      display: inline-block;
+
+      margin-top: 35px;
+
+      padding: 15px 32px;
+
+      border: 2px solid #d4af37;
+
+      color: #d4af37;
+
+      text-transform: uppercase;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      letter-spacing: 2px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition: .4s;
+
+      animation:
+        fadeUp 1s ease 1s both;
+
+      z-index: 1;
+    }
+
+    .btn::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 100%;
+      height: 100%;
+
+      background: #d4af37;
+
+      transition: .4s;
+
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    .btn:hover {
+
+      color: #050505;
+
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 0 30px rgba(212,175,55,.5);
+    }
+
+    .btn:active {
+      transform: scale(.95);
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    section {
+      padding: 110px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+
+      font-size:
+        clamp(35px,5vw,60px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 4px;
+    }
+
+    .section-title h2 span {
+      color: #d4af37;
+    }
+
+    .section-title p {
+
+      margin-top: 15px;
+
+      color: #999;
+
+      font-size: 15px;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+
+      max-width: 850px;
+
+      margin: auto;
+
+      text-align: center;
+
+      opacity: 0;
+
+      transform: translateY(40px);
+
+      animation:
+        fadeUp 1s ease forwards;
+    }
+
+    .intro p {
+
+      color: #bbb;
+
+      line-height: 1.9;
+
+      font-size: 17px;
+    }
+
+
+    /* =========================
+       CREATIVE SERVICES
+    ========================= */
+
+    .creative-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+
+      max-width: 1150px;
+
+      margin: auto;
+    }
+
+
+    /* =========================
+       CREATIVE CARD
+    ========================= */
+
+    .creative-card {
+
+      position: relative;
+
+      height: 430px;
+
+      overflow: hidden;
+
+      background: #111;
+
+      border: 1px solid #252525;
+
+      opacity: 0;
+
+      transform: translateY(60px);
+
+      animation:
+        cardReveal .9s ease forwards;
+
+      transition: .5s;
+    }
+
+    .creative-card:nth-child(1) {
+      animation-delay: .2s;
+    }
+
+    .creative-card:nth-child(2) {
+      animation-delay: .4s;
+    }
+
+    .creative-card:nth-child(3) {
+      animation-delay: .6s;
+    }
+
+    .creative-card:hover {
+
+      transform:
+        translateY(-12px)
+        scale(1.02);
+
+      border-color: #d4af37;
+
+      box-shadow:
+        0 20px 45px rgba(212,175,55,.15);
+    }
+
+    @keyframes cardReveal {
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       CARD IMAGE
+    ========================= */
+
+    .creative-card img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform 1s ease;
+    }
+
+    .creative-card:hover img {
+
+      transform: scale(1.12);
+    }
+
+
+    /* =========================
+       CARD OVERLAY
+    ========================= */
+
+    .creative-card::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          transparent 20%,
+          rgba(0,0,0,.95)
+        );
+
+      opacity: .8;
+
+      transition: .5s;
+    }
+
+    .creative-card:hover::after {
+      opacity: .95;
+    }
+
+
+    /* =========================
+       CARD CONTENT
+    ========================= */
+
+    .creative-content {
+
+      position: absolute;
+
+      left: 30px;
+      right: 30px;
+      bottom: 30px;
+
+      z-index: 2;
+
+      transform: translateY(15px);
+
+      transition: .5s;
+    }
+
+    .creative-card:hover .creative-content {
+
+      transform: translateY(0);
+    }
+
+    .creative-content h3 {
+
+      font-size: 25px;
+
+      margin-bottom: 12px;
+
+      letter-spacing: 1px;
+    }
+
+    .creative-content h3 span {
+      color: #d4af37;
+    }
+
+    .creative-content p {
+
+      color: #ccc;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+
+      background: #0a0a0a;
+    }
+
+    .process-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 30px;
+
+      max-width: 1100px;
+
+      margin: auto;
+    }
+
+    .process-card {
+
+      padding: 45px 30px;
+
+      border: 1px solid #222;
+
+      text-align: center;
+
+      transition: .5s;
+
+      opacity: 0;
+
+      transform: translateY(50px);
+
+      animation:
+        fadeUp 1s ease forwards;
+    }
+
+    .process-card:nth-child(1) {
+      animation-delay: .2s;
+    }
+
+    .process-card:nth-child(2) {
+      animation-delay: .4s;
+    }
+
+    .process-card:nth-child(3) {
+      animation-delay: .6s;
+    }
+
+    .process-card:hover {
+
+      border-color: #d4af37;
+
+      transform: translateY(-10px);
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.6);
+    }
+
+    .process-number {
+
+      font-size: 45px;
+
+      color: #d4af37;
+
+      font-weight: bold;
+
+      margin-bottom: 20px;
+
+      transition: .4s;
+    }
+
+    .process-card:hover .process-number {
+
+      text-shadow:
+        0 0 15px rgba(212,175,55,.7);
+    }
+
+    .process-card h3 {
+
+      font-size: 20px;
+
+      margin-bottom: 15px;
+
+      letter-spacing: 1px;
+    }
+
+    .process-card p {
+
+      color: #999;
+
+      line-height: 1.7;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       VISION
+    ========================= */
+
+    .vision {
+
+      min-height: 550px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.70),
+          rgba(0,0,0,.90)
+        ),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=80");
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-attachment: fixed;
+    }
+
+    .vision-content {
+
+      max-width: 850px;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .vision-content h2 {
+
+      font-size:
+        clamp(38px,6vw,75px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 4px;
+
+      animation:
+        floating 3s ease-in-out infinite;
+    }
+
+    .vision-content h2 span {
+      color: #d4af37;
+    }
+
+    .vision-content p {
+
+      margin-top: 20px;
+
+      color: #ccc;
+
+      font-size: 17px;
+
+      line-height: 1.8;
+
+      animation:
+        fadeUp 1s ease .3s both;
+    }
+
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+
+      text-align: center;
+
+      padding: 120px 20px;
+
+      background: #050505;
+    }
+
+    .cta h2 {
+
+      font-size:
+        clamp(35px,6vw,70px);
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 20px;
+    }
+
+    .cta h2 span {
+      color: #d4af37;
+    }
+
+    .cta p {
+
+      color: #999;
+
+      font-size: 17px;
+
+      margin-bottom: 10px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      padding: 35px 20px;
+
+      text-align: center;
+
+      background: #030303;
+
+      color: #777;
+
+      font-size: 13px;
+
+      letter-spacing: 1px;
+    }
+
+    footer span {
+      color: #d4af37;
+    }
+
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes heroFade {
+
+      from {
+
+        opacity: 0;
+
+        transform: scale(1.03);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes fadeUp {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateY(35px);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+    @keyframes floating {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .creative-grid {
+
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .process-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .hero-content h1 {
+
+        font-size: 45px;
+
+        letter-spacing: 3px;
+      }
+
+      .hero-content p {
+
+        font-size: 15px;
+      }
+
+      .creative-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+      .creative-card {
+
+        height: 400px;
+      }
+
+      .vision {
+
+        background-attachment: scroll;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       LOADER
+  ========================= -->
+
+  <div class="loader">
+
+    <h1>
+      AVP<span>.</span>
+    </h1>
+
+  </div>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Creative <span>Direction</span>
+      </h1>
+
+      <p>
+        Shaping Ideas. Defining Vision. Creating Impact.
+      </p>
+
+      <a href="#creative" class="btn">
+        EXPLORE OUR DIRECTION
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       INTRO
+  ========================= -->
+
+  <section>
+
+    <div class="section-title">
+
+      <h2>
+        The <span>Creative Vision</span>
+      </h2>
+
+      <p>
+        Ideas become powerful when they have a clear direction.
+      </p>
+
+    </div>
+
+
+    <div class="intro">
+
+      <p>
+        Creative Direction is where ideas, visuals, storytelling,
+        and strategy come together. At Abraham Visionary Production,
+        we transform concepts into distinctive visual experiences
+        that communicate a clear message and create a lasting impression.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CREATIVE SERVICES
+  ========================= -->
+
+  <section id="creative">
+
+    <div class="section-title">
+
+      <h2>
+        What We <span>Create</span>
+      </h2>
+
+      <p>
+        From the first idea to the final visual.
+      </p>
+
+    </div>
+
+
+    <div class="creative-grid">
+
+
+      <!-- BRAND CONCEPT -->
+
+      <div class="creative-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
+          alt="Creative Team"
+        >
+
+        <div class="creative-content">
+
+          <h3>
+            <span>Brand</span> Concepts
+          </h3>
+
+          <p>
+            Developing visual concepts that give brands a
+            unique identity, personality, and creative direction.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- VISUAL STORYTELLING -->
+
+      <div class="creative-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
+          alt="Creative Workspace"
+        >
+
+        <div class="creative-content">
+
+          <h3>
+            <span>Visual</span> Storytelling
+          </h3>
+
+          <p>
+            Turning messages and ideas into visual stories
+            that connect with audiences through emotion and style.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ART DIRECTION -->
+
+      <div class="creative-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80"
+          alt="Creative Direction"
+        >
+
+        <div class="creative-content">
+
+          <h3>
+            <span>Art</span> Direction
+          </h3>
+
+          <p>
+            Creating the visual language, mood, composition,
+            and overall aesthetic behind every production.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROCESS
+  ========================= -->
+
+  <section class="process">
+
+    <div class="section-title">
+
+      <h2>
+        Our <span>Process</span>
+      </h2>
+
+      <p>
+        Turning an idea into a complete visual direction.
+      </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+
+      <!-- STEP 1 -->
+
+      <div class="process-card">
+
+        <div class="process-number">
+          01
+        </div>
+
+        <h3>
+          Discover
+        </h3>
+
+        <p>
+          We understand your goals, audience, message,
+          and the story you want to communicate.
+        </p>
+
+      </div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="process-card">
+
+        <div class="process-number">
+          02
+        </div>
+
+        <h3>
+          Develop
+        </h3>
+
+        <p>
+          We build the creative concept, visual style,
+          mood, direction, and overall production approach.
+        </p>
+
+      </div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="process-card">
+
+        <div class="process-number">
+          03
+        </div>
+
+        <h3>
+          Execute
+        </h3>
+
+        <p>
+          We bring the creative direction to life through
+          photography, video, film, design, and production.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       VISION
+  ========================= -->
+
+  <section class="vision">
+
+    <div class="vision-content">
+
+      <h2>
+        Ideas Need <span>Direction.</span>
+      </h2>
+
+      <p>
+        We transform ambitious ideas into visual experiences
+        that feel intentional, distinctive, and memorable.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================= -->
+
+  <section class="cta">
+
+    <h2>
+      Let's Create Something <span>Distinctive.</span>
+    </h2>
+
+    <p>
+      Have an idea? Let's turn your vision into a creative experience.
+    </p>
+
+    <a href="index.html" class="btn">
+      BACK TO HOME
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    © 2026
+    <span>Abraham Visionary Production</span>
+    — All Rights Reserved.
+
+  </footer>
+
+
+</body>
+
+</html>
+```

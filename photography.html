@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Photography | AVP.Ph</title>
+
+  <style>
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: loaderOut 1s ease 1.8s forwards;
+    }
+
+    .loader h1 {
+      color: #d4af37;
+      font-size: 45px;
+      letter-spacing: 8px;
+      animation: loaderPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes loaderPulse {
+      0%, 100% {
+        opacity: .4;
+        transform: scale(.95);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes loaderOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      height: 100vh;
+      min-height: 650px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.62),
+          rgba(0,0,0,.78)
+        ),
+        url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2000&q=80");
+
+      background-size: cover;
+      background-position: center;
+      animation: heroZoom 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from {
+        background-size: 100%;
+      }
+
+      to {
+        background-size: 110%;
+      }
+    }
+
+    /* Moving Gold Light */
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: rgba(212,175,55,.12);
+      filter: blur(100px);
+      border-radius: 50%;
+      top: 20%;
+      left: -200px;
+      animation: goldMove 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes goldMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(1000px);
+      }
+    }
+
+
+    /* =========================
+       HERO CONTENT
+    ========================= */
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 30px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(45px, 8vw, 100px);
+      line-height: 1;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+
+      opacity: 0;
+      transform: translateY(50px);
+
+      animation:
+        titleReveal 1.2s ease forwards 2s,
+        goldGlow 3s ease-in-out infinite alternate 3.2s;
+    }
+
+    .hero-content h1 span {
+      color: #d4af37;
+    }
+
+    .hero-content p {
+      margin-top: 25px;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: #ddd;
+
+      opacity: 0;
+      transform: translateY(30px);
+
+      animation: fadeUp 1s ease forwards 2.6s;
+    }
+
+    @keyframes titleReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes goldGlow {
+      from {
+        text-shadow: 0 0 0 transparent;
+      }
+
+      to {
+        text-shadow:
+          0 0 15px rgba(212,175,55,.35),
+          0 0 35px rgba(212,175,55,.15);
+      }
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .btn {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 15px 32px;
+
+      border: 1px solid #d4af37;
+      color: #d4af37;
+
+      font-size: 13px;
+      letter-spacing: 2px;
+      font-weight: bold;
+
+      position: relative;
+      overflow: hidden;
+
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 3s;
+
+      transition: .4s;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #d4af37;
+
+      transform: translateX(-100%);
+      transition: .4s;
+
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn:hover {
+      color: #050505;
+      box-shadow: 0 0 25px rgba(212,175,55,.3);
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    section {
+      padding: 110px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(35px, 5vw, 60px);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .section-title h2 span {
+      color: #d4af37;
+    }
+
+    .section-title p {
+      margin-top: 15px;
+      color: #999;
+      font-size: 15px;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      text-align: center;
+      max-width: 850px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeSection 1s ease forwards;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    .intro p {
+      color: #bbb;
+      line-height: 1.9;
+      font-size: 17px;
+    }
+
+    @keyframes fadeSection {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* =========================
+       PHOTOGRAPHY CARDS
+    ========================= */
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .photo-card {
+      position: relative;
+      height: 430px;
+      overflow: hidden;
+      background: #111;
+
+      opacity: 0;
+      transform: translateY(60px);
+
+      animation: cardReveal 1s ease forwards;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+
+    .photo-card:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .photo-card:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    .photo-card:nth-child(4) {
+      animation-delay: .6s;
+    }
+
+    .photo-card:nth-child(5) {
+      animation-delay: .8s;
+    }
+
+    .photo-card:nth-child(6) {
+      animation-delay: 1s;
+    }
+
+    @keyframes cardReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          transparent 30%,
+          rgba(0,0,0,.9)
+        );
+
+      opacity: .7;
+      transition: .5s;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.12);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .photo-card:hover::after {
+      opacity: .95;
+    }
+
+    .photo-info {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+
+      z-index: 2;
+
+      transform: translateY(15px);
+      transition: .5s;
+    }
+
+    .photo-card:hover .photo-info {
+      transform: translateY(0);
+    }
+
+    .photo-info h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .photo-info h3 span {
+      color: #d4af37;
+    }
+
+    .photo-info p {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+      background: #0a0a0a;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .process-card {
+      padding: 45px 30px;
+      border: 1px solid #222;
+      text-align: center;
+
+      transition: .5s;
+
+      opacity: 0;
+      transform: translateY(50px);
+
+      animation: fadeUp 1s ease forwards;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    .process-card:hover {
+      border-color: #d4af37;
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,.5);
+    }
+
+    .process-number {
+      font-size: 45px;
+      color: #d4af37;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .process-card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .process-card p {
+      color: #999;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      min-height: 500px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.72),
+          rgba(0,0,0,.85)
+        ),
+        url("https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=2000&q=80");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(35px, 6vw, 75px);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+
+      animation: goldGlow 3s ease-in-out infinite alternate;
+    }
+
+    .cta-content h2 span {
+      color: #d4af37;
+    }
+
+    .cta-content p {
+      margin-top: 20px;
+      color: #ccc;
+      font-size: 17px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 8%;
+      text-align: center;
+      background: #030303;
+      color: #777;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    footer span {
+      color: #d4af37;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero-content h1 {
+        font-size: 45px;
+      }
+
+      .hero-content p {
+        font-size: 13px;
+        letter-spacing: 2px;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-card {
+        height: 400px;
+      }
+
+      .cta {
+        background-attachment: scroll;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       LOADER
+  ========================= -->
+
+  <div class="loader">
+    <h1>AVP.</h1>
+  </div>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        <span>Photography</span>
+      </h1>
+
+      <p>
+        Capturing Moments. Creating Memories.
+      </p>
+
+      <a href="#gallery" class="btn">
+        EXPLORE OUR WORK
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       INTRO
+  ========================= -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>
+        Through The <span>Lens</span>
+      </h2>
+
+      <p>
+        Every frame tells a story.
+      </p>
+    </div>
+
+
+    <div class="intro">
+
+      <p>
+        At Abraham Visionary Production, we turn ordinary moments
+        into meaningful photographs. From portraits and events
+        to creative concepts, our photography focuses on emotion,
+        detail, and storytelling.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GALLERY
+  ========================= -->
+
+  <section id="gallery">
+
+    <div class="section-title">
+
+      <h2>
+        Our <span>Photography</span>
+      </h2>
+
+      <p>
+        Moments captured with purpose and creativity.
+      </p>
+
+    </div>
+
+
+    <div class="photo-grid">
+
+
+      <!-- PHOTO 1 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80"
+          alt="Portrait Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Portrait</span> Photography
+          </h3>
+
+          <p>
+            Bringing personality and emotion into every portrait,
+            creating images that feel authentic and timeless.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO 2 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
+          alt="Wedding Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Wedding</span> Moments
+          </h3>
+
+          <p>
+            Preserving the smiles, emotions, and unforgettable
+            moments that make every celebration special.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO 3 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80"
+          alt="Event Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Event</span> Photography
+          </h3>
+
+          <p>
+            Capturing the energy and atmosphere of events
+            through powerful and memorable images.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO 4 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1000&q=80"
+          alt="Fashion Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Fashion</span> Photography
+          </h3>
+
+          <p>
+            Stylish visuals designed to highlight identity,
+            creativity, and modern expression.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO 5 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1000&q=80"
+          alt="Business Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Brand</span> Photography
+          </h3>
+
+          <p>
+            Professional images that help businesses present
+            their brand with confidence and personality.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO 6 -->
+
+      <div class="photo-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80"
+          alt="Creative Photography"
+        >
+
+        <div class="photo-info">
+
+          <h3>
+            <span>Creative</span> Concepts
+          </h3>
+
+          <p>
+            Turning unique ideas into visual stories through
+            creative compositions and artistic direction.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROCESS
+  ========================= -->
+
+  <section class="process">
+
+    <div class="section-title">
+
+      <h2>
+        Our <span>Process</span>
+      </h2>
+
+      <p>
+        From concept to the final frame.
+      </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+
+      <div class="process-card">
+
+        <div class="process-number">
+          01
+        </div>
+
+        <h3>
+          Concept
+        </h3>
+
+        <p>
+          We begin by understanding your idea, style,
+          purpose, and the story you want to tell.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="process-number">
+          02
+        </div>
+
+        <h3>
+          Capture
+        </h3>
+
+        <p>
+          We carefully compose every shot while focusing
+          on lighting, emotion, details, and atmosphere.
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="process-number">
+          03
+        </div>
+
+        <h3>
+          Create
+        </h3>
+
+        <p>
+          Every photograph is refined to create a polished
+          final image that matches your vision.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================= -->
+
+  <section class="cta">
+
+    <div class="cta-content">
+
+      <h2>
+        Your Moment.<br>
+        <span>Our Lens.</span>
+      </h2>
+
+      <p>
+        Let's turn your moments into stories worth remembering.
+      </p>
+
+      <a href="index.html" class="btn">
+        BACK TO HOME
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    © 2026
+    <span>Abraham Visionary Production</span>
+    — All Rights Reserved.
+
+  </footer>
+
+
+</body>
+</html>
+```
